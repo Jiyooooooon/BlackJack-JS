@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Let's Play BlackJack</title>
+  <style>
+	body {background-color : beige;}
+	#content {
+			font-family: arial, helvetica, sans-serif;
+			font-weight : bold;
+			font-size : 28;
+            margin: 200px auto;
+            padding: 10px 20px 40px;
+            border: 1px solid gray;
+            width: 500px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+			background-color : white;
+			border-radius : 10px;
+        }
+	hr {background-color: red; height: 1px; border: 0;}	
+		
+  </style>
+
+</head>
+<body>
+
+	<div id="content">
+	<h2 align="center"><p><span style=color:red;>&hearts;</span>&spades; JavaScript BlackJack  &diams;<span style=color:red;>&clubs;</span></p></h2>
+	<hr>
+    <div id="hand"></div><br>
+    <div id="dealer"></div>
+	<div id="player"></div><br>
+	<div id="lost"></div>
+	<div id="win"></div>
+	<div id="dwin"></div>
+	<div id="draw"></div>
+	
+    <script>
+	
+	var drnd;
+	var dmin = 17;
+	var dmax = 21;
+	var mrnd;
+	var mmin = 1;
+	var mmax = 13;
+	
+    
+    drnd = Math.floor(Math.random() * (dmax-dmin) + 1) + dmin; // get dealer random number(Dealer's score) using Math.floor function.
+	var iddealer = document.getElementById("dealer"); // Assign one JavaScript variable and utilize document.getElementById method to display.
+	var message1 = "Dealer's Score : "; 
+	iddealer.innerHTML = message1 + "<span style='color:red'>" + drnd + "</span><br>"; //display meesage1.
+	
+	var myVar = 0;
+	var sum = 0;
+
+	do {
+			mrnd = Math.floor(Math.random() * (mmax-mmin) + 1) + mmin; // get player random number(Player'S Score) using Math.floor function.
+			myVar++;
+			alert ("Your Card is : " + mrnd);
+				if(mrnd > 10){
+					mrnd = 10; //if player's card is one of 11,12 or 13, then assigned a value of 10.
+				}	
+			var idhand = document.getElementById("hand");
+			var message2 = "Player's Hand : ";
+			idhand.innerHTML = message2 + "<span style='color:red'>" + myVar + "</span><br>"; //keep track of each card played and display.
+			
+			sum += mrnd; 
+			var idplayer = document.getElementById("player");
+			var message3 = "Player's Score : ";
+			idplayer.innerHTML = message3 + "<span style='color:red'>" + sum + "</span><br>"; // keep a running total of player's score and display.
+
+				
+	}while(sum <= 21 && confirm("Do you want another card?")); //if player's score didn't go over 21 then ask weather you want another card or not.
+
+	//Once the loop has ended, test player's score and compary it againt the dealer's.
+	if(sum > 21) {
+				var idlost = document.getElementById("lost");
+				var message4 = "You went Bust, You lost! ";
+				idlost.innerHTML = "<span style='color:red'>" + message4 + "</span>";
+			}	
+	else if (sum > drnd){
+				var idwin = document.getElementById("win");
+				var message5 = "You Win! "; 
+				idwin.innerHTML = "<span style='color:green'>" + message5 + "</span>" + "<span style='color:red'>" + sum + "</span><br>"; 
+			}
+	else if(sum < drnd) {
+				var iddwin = document.getElementById("dwin");
+				var message6 = "Dealer Wins! "; 
+				iddwin.innerHTML = "<span style='color:green'>" + message6 + "</span>" + "<span style='color:red'>" + drnd + "</span><br>"; 
+			}
+	else
+			{
+				var iddraw = document.getElementById("draw");
+				var message7 = "It's Draw! "; 
+				iddraw.innerHTML = "<span style='color:red'>" + message7 + "</span><br>";
+			}
+
+	
+     </script>
+	 </div>
+</body>
+</html>

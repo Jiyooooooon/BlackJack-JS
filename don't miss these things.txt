@@ -1,0 +1,10 @@
+1.sum is always be outside loop.
+otherwise it's going to be 0 all the time.
+2.instead of true/false think about condition easy to express
+3.Don't forget do-while loop format 
+4.GetElemnetById !!
+5.assign uses "="!!
+6.!!!!! and condition!!
+if left side false cannot run. left side, right side !
+which condition put first check! 
+----> Attention!!!!<------
